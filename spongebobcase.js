@@ -16,3 +16,29 @@ function spongebob(string) {
 }
 
 console.log(spongebob('javascript'))
+
+function spongebob2(str) {
+  let newArr = []
+  str.split('').forEach((item, idx) => {
+    if (idx % 2 === 0) {
+      newArr.push(item.toUpperCase())
+    } else {
+      newArr.push(item)
+    }
+  })
+  return (newArr.join(''))
+}
+
+function spongebob3(str) {
+  return str.split('').map((item, idx) => {
+    if (idx % 2 === 0) {
+      return item.toUpperCase()
+    } else {
+      return item
+    }
+  }).join('')
+
+}
+
+console.log(spongebob2('yoyoyo'))
+console.log(spongebob3('yoyoyo'))
