@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <title>Shopping List</title>
+  <script src="https://kit.fontawesome.com/23912d8913.js"></script>
+
+</head>
+
+<style>
+  html * {
+    margin: 0;
+  }
+
+  .header {
+    display: flex;
+    width: 100vw;
+    height: 6vw;
+    background-color: maroon;
+    color: white;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lists {
+    display: flex;
+    height: 45vw;
+  }
+
+  .need-to-get {
+    width: 50vw;
+    border-right: 5px maroon solid;
+  }
+
+  .in-the-cart {
+    width: 50vw;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    border-bottom: 5px maroon solid;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    background-color: maroon;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .add-item-to-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+
+  #input-bar {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 20px;
+    font-size: 18px;
+    width: 300px;
+  }
+
+  #submit-button {
+    width: 150x;
+    margin-bottom: 18px;
+    border: none;
+    text-decoration: none;
+    font-size: 20px;
+    border: 2px black solid;
+    background-color: white;
+    color: black;
+  }
+
+  #left-list {
+    font-size: 2em;
+  }
+
+  .left-item-cart-button {
+    font-size: 15px;
+    margin-left: 15px;
+    height: 25px;
+    position: relative;
+    bottom: 4px;
+    background-color: maroon;
+    color: white;
+    border: 2px black solid;
+  }
+
+  #right-list {
+    font-size: 2em;
+  }
+
+  #checkout-button {
+    height: 141px;
+    width: 141px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    color: black;
+    font-size: 1.4em;
+    border: 2px black solid;
+  }
+</style>
+
+<body>
+  <div class="header">
+    <h1>MY SHOPPING LIST</h1>
+  </div>
+
+  <div class="lists">
+    <div class="need-to-get">
+      <div class="title">
+        <h1>ITEMS I STILL NEED</h1>
+      </div>
+      <div class="left-list-container">
+        <ul id="left-list">
+
+        </ul>
+      </div>
+    </div>
+    <div class="in-the-cart">
+      <div class="title">
+        <h1>ITEMS IN MY CART</h1>
+      </div>
+      <div class="right-list-container">
+        <ul id="right-list">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="add-item-to-list">
+      <h1>ADD AN ITEM TO THE LIST:</h1>
+      <input type="text" id="input-bar">
+      <button id="submit-button" onclick="addToListFunc()">ADD TO LIST</button>
+    </div>
+    <div class="checkout">
+      <button id="checkout-button" onclick="refreshFunc()">CHECKOUT</button>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  function addToListFunc() {
+    let inputBarValue = document.querySelector('#input-bar').value
+    if (inputBarValue == '') {
+      return
+    } else {
+      const newLI = document.createElement('LI')
+      const newLIButton = document.createElement('Button')
+      newLI.classList.add('left-item')
+      newLIButton.classList.add('left-item-cart-button')
+      newLIButton.setAttribute('onclick', 'deleteAddFunc()')
+      newLIButton.innerHTML = '<i class="fas fa-shopping-cart"></i>'
+      const inputNode = document.createTextNode(inputBarValue)
+      newLI.appendChild(inputNode)
+      newLI.appendChild(newLIButton)
+
+      let leftList = document.querySelector('#left-list')
+      leftList.appendChild(newLI)
+      document.querySelector('#input-bar').value = ''
+    }
+  }
+
+  function deleteAddFunc() {
+    let elements = document.querySelectorAll('.left-item')
+    let buttons = document.querySelector('.left-item-cart-button')
+    const rightItemList = document.querySelector('#right-list')
+
+    elements.forEach(element => element.addEventListener('click', (e) => {
+
+      element.remove()
+      element.innerHTML = element.textContent
+      rightItemList.appendChild(element)
+    }))
+    element.removeEventListener('click', false)
+  }
+
+  function refreshFunc() {
+    location.reload()
+    alert('Your list and cart will cleared')
+  }
+
+</script>
+
+</html>

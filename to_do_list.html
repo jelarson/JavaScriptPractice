@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <title></title>
+
+  <style>
+    .todoItem:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="todos">
+    <h2>Pending Todos</h2>
+    <ul>
+      <!-- <li class="todoItem" onclick="addDeleteFunc()" is-complete='False'>#1</li>
+      <li class="todoItem" onclick="addDeleteFunc()" is-complete='False'>#2</li>
+      <li class="todoItem" onclick="addDeleteFunc()" is-complete='False'>#3</li>
+      <li class="todoItem" onclick="addDeleteFunc()" is-complete='False'>#4</li>
+      <li class="todoItem" onclick="addDeleteFunc()" is-complete='False'>#5</li> -->
+      <li class="todoItem">#1</li>
+      <li class="todoItem">#2</li>
+      <li class="todoItem">#3</li>
+      <li class="todoItem">#4</li>
+      <li class="todoItem">#5</li>
+    </ul>
+  </div>
+
+  <h2>Completed Todos</h2>
+  <ul class="completedTodoWrapper">
+    <div class="completed"></div>
+  </ul>
+</body>
+
+<script>
+  // function addDeleteFunc() {
+  //   let completed = document.querySelector('.completedTodoWrapper')
+  //   let element = document.querySelector('.todoItem')
+  //   let pending = document.querySelector('.todos')
+  //   element.parentNode.classList.add('pendingUL');
+  //   let pendingUL = document.querySelector('.pendingUL')
+  //   attribute = element.getAttribute("is-complete")
+  //   if (attribute == 'False') {
+  //     element.parentNode.removeChild(element)
+  //     completed.appendChild(element)
+  //     document.element.setAttribute("is-complete", "True")
+  //     return
+  //   } else {
+  //     element.parentNode.removeChild(element)
+  //     pendingUL.appendChild(element)
+  //     document.element.setAttribute("is-complete", "False")
+  //     return
+  //   }
+  // }
+  // const selectedItem = document.querySelectorAll('.todoItem');
+  // selectedItem.forEach(item => item.addEventListener('click', (event) => {
+  //   let completed = document.querySelector('.completedTodoWrapper')
+  //   let element = document.querySelector('.todoItem')
+  //   let pending = document.querySelector('.todos')
+  //   element.parentNode.classList.add('pendingUL');
+  //   let pendingUL = document.querySelector('.pendingUL')
+  //   // console.log(pendingUL)
+  //   let counter = true
+  //   console.log(element.parentNode)
+  //   if (counter) {
+  //     console.log(element)
+  //     element.parentNode.removeChild(element)
+  //     console.log(element)
+  //     completed.appendChild(element)
+  //     counter = false
+  //     // return
+  //   } else {
+  //     element.parentNode.removeChild(element)
+  //     pendingUL.appendChild(element)
+  //     counter = true
+  //     // return
+  //   }
+  // }))
+
+  // Jordan's solution
+
+  const todos = document.querySelectorAll('.todoItem');
+  const completedTodos = document.querySelector('.completed');
+  const completedTodoWrapper = document.querySelector('.completedTodoWrapper');
+
+  todos.forEach(todo => todo.addEventListener('click', (event) => {
+    let completedTodo = document.createElement('li');
+    let todoContent = document.createTextNode(todo.textContent);
+    completedTodo.appendChild(todoContent);
+    completedTodoWrapper.insertBefore(completedTodo, completedTodos);
+    todo.remove();
+  }))
+
+</script>
+
+</html>
